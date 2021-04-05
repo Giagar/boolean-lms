@@ -30,6 +30,11 @@
                     }
                     ```
                 - the "many table" has a fn belongsTo
+                    ```
+                    public function tablenameSingular() {
+                       return $this->belongsTo('App\ModelName');
+                    }
+                    ```
         - in a \*->\* relation:
             - pivot table: it has not a model, it is created via a migration: `php artisan make:migration create_1modelname_2modelname_table`
             - migration: only the pivot table contains the fk and their definition
