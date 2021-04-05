@@ -15,12 +15,20 @@
         1) create the model + migration: `php artisan make:model ModelName --migration`;
         2) in the migration compose the table (if needed, remember the fk and its definition);
         3) launch the migration: `php artisan migrate`;
+        4) repeat 1-3 for each table
+        5) establish the relations in the model
+            - if \*->\*: create a pivot table first 
 
     > relations:
         - in a 1->* relation:
             - migration: the fk and its definition goes in the "many table"
             - model: 
                 - the "one table" has a fn hasMany
+                    ```
+                    public function tableName() {
+                       return $this->hasMany('App\ModelName');
+                    }
+                    ```
                 - the "many table" has a fn belongsTo
         - in a \*->\* relation:
             - pivot table: it has not a model, it is created via a migration: `php artisan make:migration create_1modelname_2modelname_table`
